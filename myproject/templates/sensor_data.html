@@ -1,11 +1,16 @@
 {% extends 'layout.html' %}
-{% block title %}
-Sensor Data
-{% endblock %}
 
 {% block body %}
 
 <style>
+  .capitalize{
+    text-transform: capitalize;
+  }
+
+  .loading{
+    text-align: center;
+  }
+
   .panel {
     border-radius: 0px;
   }
@@ -13,6 +18,15 @@ Sensor Data
   .card > .panel > .panel-heading{
     background-color: rgb(0, 102, 191)!important;
 
+  }
+
+  .action_bar{
+    margin-bottom: 35px;
+    padding-bottom: 40px;
+  }
+
+  .action_bar > .title{
+    font-size: 24px;
   }
 
   .panel-title{
@@ -26,23 +40,33 @@ Sensor Data
   .row_val{
     text-align: center;
   }
+
+  .main_card{
+    border: none;
+    box-shadow: 0 1px 1px rgba(0,0,0,0);
+  }
+
+  .main_card > .panel-body{
+    box-shadow: 0 1px 1px rgba(0,0,0,0);
+  }
+
 </style>
 
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <div class="col-xs-9">Sensor Data</div>
-    <div class="col-xs-3">
+<div class="panel panel-primary main_card">
+  <div class="panel-heading action_bar">
+    <div class="col-xs-9 title">Sensor Data</div>
+    <div class="col-xs-3 btns">
       <button
         class="btn btn-success btn-md pull-right"
         ng-click="app.get_sensor_data()"
       >
         <span class="fa fa-refresh"></span>
-        <span class="hidden-sm hidden-xs">Resfresh Data</span>
+        <span class="hidden-xs">Resfresh Data</span>
       </button>
     </div>
   </div>
   <div class="panel-body">
-    <div ng-if="app.loading_sensor_data"><i class="fa fa-spinner" aria-hidden="true"></i></div>
+    <div class="loading" ng-if="app.loading_sensor_data"><i class="fa fa-spinner fa-5x fa-spin" aria-hidden="true"></i></div>
     <div ng-if="!app.loading_sensor_data">
       <div class="card col-xs-12 col-sm-6 col-md-4"
             ng-repeat="sensor in app.sensor_data">
