@@ -6,22 +6,15 @@ from flask import render_template
 from bitstring import BitArray
 from flask import jsonify
 
-@app.route("/")
-def hello():
-    return "<h1 style='color:blue'>Hello There!</h1>"
-
-# from bitstring import BitArray
+app.config.from_object(__name__)
 
 @app.route('/sensor_data/', methods=['GET'])
+@app.route("/", methods=['GET'])
 def sensor_data():
     return render_template('sensor_data.html')
 
 @app.route('/refresh_sensor_data/', methods=['GET'])
 def refresh_sensor_data():
-    print "########"
-    # import ipdb
-    # ipdb.set_trace()
-
     response = requests.get('https://clientedge-conductor.link-labs.com/clientEdge/data/uplinkPayload/applicationToken/b2f41103d2ba369afb75/events/2016-10-20T15:51:26.213/2016-10-15T15:50:26.213?maxResults=5',
                      auth=('developer.test@link-labs.com', 'devTest123'))
 
