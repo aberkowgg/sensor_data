@@ -7,7 +7,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='font-awesome/css/font-awesome.css') }}">
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-material-design.css') }}">-->
+    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ripple.min.css') }}">-->
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!--<script type="text/javascript" src="{{ url_for('static', filename='js/meterial.js') }}"></script>-->
+    <!--<script type="text/javascript" src="{{ url_for('static', filename='js/ripple.min.js') }}"></script>-->
     <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
    <style>
        body{
@@ -33,6 +39,8 @@
 
 <script>
 {% block scripts %}
+
+//$.material.init();
 {% endblock %}
 </script>
 

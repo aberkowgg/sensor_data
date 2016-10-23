@@ -1,0 +1,184 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<style>
+  .capitalize{
+    text-transform: capitalize;
+  }
+
+  .loading{
+    text-align: center;
+  }
+
+  .panel {
+    border-radius: 0px;
+  }
+
+  .card > .panel .panel-heading{
+    background-color: #1565C0!important;
+  }
+
+
+  .action_bar{
+    background-color: #0D47A1;
+  }
+
+  .action_bar{
+    margin-bottom: 35px;
+    padding-bottom: 40px;
+  }
+
+  .action_bar > .title{
+    font-size: 24px;
+  }
+
+  .panel-title{
+    color: rgb(255, 255, 255);
+  }
+
+  .row_key{
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .row_val{
+    text-align: center;
+  }
+
+  .main_card{
+    border: none;
+    box-shadow: 0 1px 1px rgba(0,0,0,0);
+  }
+
+  .main_card > .panel-body{
+    box-shadow: 0 1px 1px rgba(0,0,0,0);
+  }
+
+  .module{
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #1565C0;
+  }
+
+  .meta_heading{
+      /*background-color: #2e6da4;*/
+  }
+
+  .loading{
+      margin-top: 40px;
+  }
+
+  .fa-spinner,
+  .loading > span{
+      color: #9E9E9E;
+  }
+
+  .loading > span{
+      margin-top: 5px;
+  }
+
+  .panel-heading {
+      border-radius: 0px;
+  }
+
+
+
+</style>
+
+<img class="img-fluid" alt="Responsive image" src="{{url_for('static', filename='img/logo.png')}}">
+
+<div class="panel panel-primary main_card">
+  <div class="panel-heading action_bar">
+    <div class="col-xs-9 title">Sensor Data</div>
+    <div class="col-xs-3 btns">
+      <button
+        class="btn btn-success btn-md pull-right"
+        ng-click="app.get_sensor_data()"
+      >
+        <span class="fa fa-refresh"></span>
+        <span class="hidden-xs">Resfresh Data</span>
+      </button>
+    </div>
+  </div>
+  <div class="panel-body">
+      <!-- loading spinner -->
+      <div class="loading" ng-if="app.loading_sensor_data">
+          <div class="col-sm-12"><i class="fa fa-spinner fa-5x fa-spin" aria-hidden="true"></i></div>
+          <span>fething data...</span>
+      </div>
+
+      <!-- error message -->
+      <div ng-if="app.loading_sensor_error">
+        <div class="alert alert-danger" role="alert">Something went wrong.</div>
+      </div>
+
+      <div ng-if="!app.loading_sensor_data && !app.loading_sensor_error">
+        <div class="card col-xs-12"
+              ng-repeat="sensors in app.sensor_data">
+
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title module">Module: {[ sensors[0] ]}</h3>
+              </div>
+              <div class="panel-body">
+                <div class="table-responsive">
+                  <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="row_key">Payload</th>
+                          <th ng-repeat="key in app.ordered_key"
+                              class="row_key capitalize">
+                              {[ app.format_label(key) ]}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tr ng-repeat="sensor in sensors[1]">
+                        <td class="row_val">{[ sensor['pld_string'] ]}</td>
+                        <td  ng-repeat="key in app.ordered_key"
+                              ng-if="sensor['sensor_data'][key] != undefined"
+                            class="row_val">
+                            {[ app.format_value(key, sensor['sensor_data'][key]) ]}
+                        </td>
+                      </tr>
+                    </table>
+                </div>
+
+
+                <!--<div class="card col-xs-12 col-sm-6 col-md-4"-->
+                      <!--ng-repeat="sensor in sensors[1]">-->
+
+                    <!--<div class="panel panel-default">-->
+                      <!--<div class="panel-heading">-->
+                        <!--<h3 class="panel-title">Sensor: {[ sensor['pld_string'] ]}</h3>-->
+                      <!--</div>-->
+
+
+                      <!--<div class="panel-body">-->
+                        <!--<div class="sensor_data_row"-->
+                             <!--ng-repeat="key in app.ordered_key"-->
+                             <!--ng-if="sensor['sensor_data'][key] != undefined">-->
+                          <!--&lt;!&ndash;(key, value) in sensor['sensor_data']&ndash;&gt;-->
+                             <!--<div class="row_key col-xs-5">{[ app.format_label(key) ]}</div>-->
+                             <!--<div class="row_val col-xs-7">{[ app.format_value(key, sensor['sensor_data'][key]) ]}</div>-->
+                        <!--</div>-->
+
+
+                    <!--</div>-->
+
+
+                <!--</div>-->
+              <!--</div>-->
+
+          </div>
+        </div>
+    </div>
+  </div>
+  </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}

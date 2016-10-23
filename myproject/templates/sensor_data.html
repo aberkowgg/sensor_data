@@ -50,6 +50,11 @@
     box-shadow: 0 1px 1px rgba(0,0,0,0);
   }
 
+  .module{
+    font-size: 18px;
+    font-weight: 600;
+  }
+
 </style>
 
 <div class="panel panel-primary main_card">
@@ -66,30 +71,48 @@
     </div>
   </div>
   <div class="panel-body">
-    <div class="loading" ng-if="app.loading_sensor_data"><i class="fa fa-spinner fa-5x fa-spin" aria-hidden="true"></i></div>
-    <div ng-if="!app.loading_sensor_data">
-      <div class="card col-xs-12 col-sm-6 col-md-4"
-            ng-repeat="sensor in app.sensor_data">
+      <!-- loading spinner -->
+      <div class="loading" ng-if="app.loading_sensor_data"><i class="fa fa-spinner fa-5x fa-spin" aria-hidden="true"></i></div>
+
+      <!-- error message -->
+      <div ng-if="app.loading_sensor_error">
+        <div class="alert alert-danger" role="alert">Something went wrong.</div>
+      </div>
+
+      <div ng-if="!app.loading_sensor_data && !app.loading_sensor_error">
+        <div class="card col-xs-12"
+              ng-repeat="sensors in app.sensor_data">
 
           <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Sensor: {[ sensor['pld_string'] ]}</h3>
-            </div>
-            <div class="panel-body">
-              <div class="sensor_data_row"
-                   ng-repeat="key in app.ordered_key"
-                   ng-if="sensor['sensor_data'][key] != undefined">
-                <!--(key, value) in sensor['sensor_data']-->
-                   <div ng-class="key === 'gw_rssi' ? '' :  'capitalize'" class="row_key col-xs-6">{[ app.format_label(key) ]}</div>
-                   <div class="row_val col-xs-6">{[ app.format_value(key, sensor['sensor_data'][key]) ]}</div>
+              <div class="panel-heading">
+                <h3 class="panel-title module">Module: {[ sensors[0] ]}</h3>
               </div>
-            </div>
-          </div>
+              <div class="panel-body">
+                <div class="card col-xs-12 col-sm-6 col-md-4"
+                      ng-repeat="sensor in sensors[1]">
 
-      </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Sensor: {[ sensor['pld_string'] ]}</h3>
+                      </div>
+                      <div class="panel-body">
+                        <div class="sensor_data_row"
+                             ng-repeat="key in app.ordered_key"
+                             ng-if="sensor['sensor_data'][key] != undefined">
+                          <!--(key, value) in sensor['sensor_data']-->
+                             <div ng-class="key === 'gw_rssi' ? '' :  'capitalize'" class="row_key col-xs-5">{[ app.format_label(key) ]}</div>
+                             <div class="row_val col-xs-7">{[ app.format_value(key, sensor['sensor_data'][key]) ]}</div>
+                        </div>
+                          
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
     </div>
   </div>
-</div>
+  </div>
 
 {% endblock %}
 

@@ -10,29 +10,26 @@ app.config(function($interpolateProvider){
 app.controller('appCtrl', appCtrl);
 function appCtrl($scope, $http, $timeout, $q) {
   var vm = this;
-  vm.ordered_key = ['message_count', 'message_type', 'latitude', 'longitude', 'altitude', 'gw_rssi', 'reserved', 'motion',
-      'light_data', 'humidity', 'temperature', 'pressure']
+  vm.ordered_key = ['message_count', 'motion', 'light_data', 'humidity', 'temperature', 'pressure']
 
   vm.get_sensor_data = function () {
+      vm.loading_sensor_error = false;
       vm.loading_sensor_data = true;
-      console.log("clicked");
+
       return $http({
-      method  : 'GET',
-      url     : '/refresh_sensor_data'
-    }).success(function(data) {
-      vm.sensor_data = data.response;
-      vm.loading_sensor_data = false;
-    });
-  }
+          method  : 'GET',
+          url     : '/refresh_sensor_data'
+        }).success(function(data) {
+          vm.sensor_data = data.response;
+          vm.loading_sensor_data = false;
+        }).error(function (data) {
+          vm.loading_sensor_data = false;
+          vm.loading_sensor_error = true;
+        });
+      }
 
   vm.format_label = function (uf_label) {
-      var label;
-      if(uf_label === "gw_rssi"){
-          label = "GW RSSI";
-      }else{
-          label = uf_label.replace(/_/g, " ");
-      }
-      return label;
+      return uf_label.replace(/_/g, " ");
   }
 
   vm.format_value = function (key, uf_val) {
