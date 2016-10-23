@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+{% block title %}
+Sensor Data
+{% endblock %}
+
+{% block body %}
+
+<style>
+  .panel {
+    border-radius: 0px;
+  }
+
+  .card > .panel > .panel-heading{
+    background-color: rgb(0, 102, 191)!important;
+
+  }
+
+  .panel-title{
+    color: rgb(255, 255, 255);
+  }
+
+  .row_key{
+    font-weight: 600;
+  }
+
+  .row_val{
+    text-align: center;
+  }
+</style>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <div class="col-xs-9">Sensor Data</div>
+    <div class="col-xs-3">
+      <button
+        class="btn btn-success btn-md pull-right"
+        ng-click="app.get_sensor_data()"
+      >
+        <span class="fa fa-refresh"></span>
+        <span class="hidden-sm hidden-xs">Resfresh Data</span>
+      </button>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div ng-if="app.loading_sensor_data"><i class="fa fa-spinner" aria-hidden="true"></i></div>
+    <div ng-if="!app.loading_sensor_data">
+      <div class="card col-xs-12 col-sm-6 col-md-4"
+            ng-repeat="sensor in app.sensor_data">
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Sensor: {[ sensor['pld_string'] ]}</h3>
+            </div>
+            <div class="panel-body">
+              <div class="sensor_data_row"
+                   ng-repeat="key in app.ordered_key"
+                   ng-if="sensor['sensor_data'][key] != undefined">
+                <!--(key, value) in sensor['sensor_data']-->
+                   <div ng-class="key === 'gw_rssi' ? '' :  'capitalize'" class="row_key col-xs-6">{[ app.format_label(key) ]}</div>
+                   <div class="row_val col-xs-6">{[ app.format_value(key, sensor['sensor_data'][key]) ]}</div>
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}
