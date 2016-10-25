@@ -5,8 +5,8 @@
 <div class="modal-body">
   {% for m_key, m_val in data['value']['avgSignalMetadata'].iteritems() %}
     <div class="sensor_data_row">
-         <div class="row_key col-xs-6">{{m_key}}</div>
-         <div class="row_val col-xs-6">{{m_val}}</div>
+         <div class="meta_key col-xs-5 col-sm-4 col-sm-offset-2">{{m_key}}</div>
+         <div class="meta_val col-xs-7 col-sm-5 col-sm-offset-1">{{m_val}}</div>
     </div>
   {% endfor %}
 </div>

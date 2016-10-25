@@ -12,16 +12,16 @@
   }
 
   .panel {
-    border-radius: 0px;
+    border-radius: 1px;
   }
 
   .card > .panel .panel-heading{
-    background-color: #1565C0!important;
+    background-color: #03A9F4!important;
   }
 
 
   .action_bar{
-    background-color: #0D47A1;
+    background-color: #0288D1;
   }
 
   .action_bar{
@@ -58,7 +58,7 @@
   .module{
     font-size: 18px;
     font-weight: 600;
-    background-color: #1565C0;
+    background-color: #03A9F4;
   }
 
   .meta_heading{
@@ -79,8 +79,48 @@
   }
 
   .panel-heading {
-      border-radius: 0px;
+      border-radius: 1px;
   }
+
+  .table>thead>tr>th {
+        border-bottom: 1px solid black;
+  }
+
+  tbody > tr:hover{
+    background-color: #F5F5F5;
+  }
+
+  .btn{
+    border-radius: 1px;
+  }
+
+  .btn-primary {
+    background-color: #4FC3F7;
+    border-color: #4FC3F7;
+  }
+
+  .modal-footer {
+    border: none;
+  }
+
+  .modal-header{
+    background-color: #03A9F4;
+    color: white;
+  }
+
+  .close {
+        float: right;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 1;
+        color: white;
+        text-shadow: 0 1px 0 #fff;
+        filter: alpha(opacity=20);
+          opacity: 1;
+
+    }
+
+
 
 
 
@@ -141,7 +181,7 @@
                             class="row_val">
                             {[ app.format_value(key, sensor['sensor_data'][key]) ]}
                         </td>
-                        <td class="row_val"><span ng-click="app.meta_modal(sensor)">View Meta</span></td>
+                        <td class="row_val"><button class="btn btn-primary btn-xs" ng-click="app.meta_modal(sensor)">View Meta</button></td>
                       </tr>
                     </table>
                 </div>
