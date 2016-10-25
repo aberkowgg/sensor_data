@@ -3,6 +3,7 @@ import datetime
 from flask import Flask
 from flask import jsonify
 from flask import render_template
+from flask import request
 import requests
 import simplejson as json
 
@@ -41,6 +42,15 @@ def refresh_sensor_data():
 
     else:
         return jsonify({'response': "Bad Request"}), 400
+
+@app.route('/meta_modal', methods=['POST'])
+def meta_modal():
+    modal_data = {}
+    data = request.json
+    view = render_template('sensor_meta.html', data=data)
+    modal_data['view'] = view
+    modal_data['data'] = data
+    return jsonify(modal_data)
 
 
 def fetch_sensor_results():

@@ -1,3 +1,25 @@
+/**
+ * Accepts a wrapper and optional parameters associative array.
+ * The wrapper is the div the contains the dynamically loaded html you wish to initialize angular for.
+ * Parameteres are dynamic and options
+ *
+ * @param wrapper
+ * @param params - array
+ */
+function initAngular(wrapper, view){
+    angular.element($('body')).injector().invoke(function($compile){
+                var obj=wrapper;
+                var scope=obj.scope();
+                // generate dynamic content
+                if(view){
+                    obj.html(view);
+                }
+                // compile!!!
+                $compile(obj.contents())(scope);
+            });
+}
+
+
 //Define module, associate angular app with part of html document.
 
 var app = angular.module('app', []);
@@ -27,6 +49,17 @@ function appCtrl($scope, $http, $timeout, $q) {
           vm.loading_sensor_error = true;
         });
       }
+
+  vm.meta_modal = function(data) {
+    return $http({
+      method  : 'POST',
+      url     : '/meta_modal',
+      data    : data
+    }).success(function(data) {
+      initAngular($('#modal_master_body'), data.view);
+      $('#modal_master').modal('show');
+    });
+  }
 
   vm.format_label = function (uf_label) {
       return uf_label.replace(/_/g, " ");

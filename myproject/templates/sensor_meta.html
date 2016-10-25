@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <h4 class="modal-title">Avg Signal Meta Data</h4>
+</div>
+<div class="modal-body">
+  {% for m_key, m_val in data['value']['avgSignalMetadata'].iteritems() %}
+    <div class="sensor_data_row">
+         <div class="row_key col-xs-6">{{m_key}}</div>
+         <div class="row_val col-xs-6">{{m_val}}</div>
+    </div>
+  {% endfor %}
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>

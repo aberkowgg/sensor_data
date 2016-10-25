@@ -97,7 +97,7 @@
         ng-click="app.get_sensor_data()"
       >
         <span class="fa fa-refresh"></span>
-        <span class="hidden-xs">Resfresh Data</span>
+        <span class="hidden-xs">Refresh Data</span>
       </button>
     </div>
   </div>
@@ -131,6 +131,7 @@
                               class="row_key capitalize">
                               {[ app.format_label(key) ]}
                           </th>
+                          <th class="row_key">Meta</th>
                         </tr>
                       </thead>
                       <tr ng-repeat="sensor in sensors[1]">
@@ -140,6 +141,7 @@
                             class="row_val">
                             {[ app.format_value(key, sensor['sensor_data'][key]) ]}
                         </td>
+                        <td class="row_val"><span ng-click="app.meta_modal(sensor)">View Meta</span></td>
                       </tr>
                     </table>
                 </div>
