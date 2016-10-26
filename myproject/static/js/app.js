@@ -8,28 +8,31 @@
  */
 function initAngular(wrapper, view){
     angular.element($('body')).injector().invoke(function($compile){
-                var obj=wrapper;
-                var scope=obj.scope();
-                // generate dynamic content
-                if(view){
-                    obj.html(view);
-                }
-                // compile!!!
-                $compile(obj.contents())(scope);
-            });
+        var obj=wrapper;
+        var scope=obj.scope();
+        // generate dynamic content
+        if(view){
+            obj.html(view);
+        }
+        // compile!!!
+        $compile(obj.contents())(scope);
+    });
 }
 
 
 //Define module, associate angular app with part of html document.
-
 var app = angular.module('app', []);
+
 
 //Configure the html template to recognize {[ ]} instead of {{ }} for angular scope variables to avoid conflict with jinja.
 app.config(function($interpolateProvider){
     $interpolateProvider.startSymbol('{[').endSymbol(']}');
 });
 
+//init appCtrl
 app.controller('appCtrl', appCtrl);
+
+
 function appCtrl($scope, $http, $timeout, $q) {
   var vm = this;
   vm.ordered_key = ['message_count', 'motion', 'light_data', 'humidity', 'temperature', 'pressure']
@@ -50,6 +53,7 @@ function appCtrl($scope, $http, $timeout, $q) {
         });
       }
 
+
   vm.meta_modal = function(data) {
     return $http({
       method  : 'POST',
@@ -61,9 +65,11 @@ function appCtrl($scope, $http, $timeout, $q) {
     });
   }
 
+
   vm.format_label = function (uf_label) {
       return uf_label.replace(/_/g, " ");
   }
+
 
   vm.format_value = function (key, uf_val) {
       var value;
@@ -78,7 +84,7 @@ function appCtrl($scope, $http, $timeout, $q) {
               value = uf_val + ' lux';
               break;
           case 'humidity':
-              value = uf_val + '% RH';
+              value = uf_val + ' % RH';
               break;
           case 'temperature':
               value = uf_val + ' C';
@@ -101,7 +107,6 @@ function appCtrl($scope, $http, $timeout, $q) {
           default:
               value = uf_val;
               break;
-
       }
       return value;
   }

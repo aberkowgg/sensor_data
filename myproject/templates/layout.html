@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <head>
-  <title>Link Labs Sensor Data</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Latest compiled and minified CSS -->
+    <title>Link Labs Sensor Data</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='font-awesome/css/font-awesome.css') }}">
@@ -12,14 +12,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
-   <style>
+     <style>
        body{
            font-family: 'Didact Gothic', sans-serif;
        }
-   </style>
-
-
-
+     </style>
 </head>
 
 <body ng-app="app" ng-controller="appCtrl as app"
@@ -31,8 +28,8 @@
               {% endblock %}
             </div>
 
-      </div> <!-- #content -->
-    </div> <!-- #wrapper -->
+      </div>
+    </div>
 
 <!--blank modal to be dynamically filled through ajax. Appears above block modals to avoid overwrite.-->
 <div class="modal fade" id="modal_master" data-keyboard="false" data-backdrop="static">
@@ -43,8 +40,6 @@
 </div>
 <script>
 {% block scripts %}
-
-//$.material.init();
 {% endblock %}
 </script>
 

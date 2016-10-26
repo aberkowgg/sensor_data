@@ -12,10 +12,6 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET'])
 def sensor_data():
-    return render_template('sensor_data_table.html')
-
-@app.route("/card_view", methods=['GET'])
-def sensor_data_cards():
     return render_template('sensor_data.html')
 
 
@@ -29,6 +25,7 @@ def refresh_sensor_data():
 
         sensors = {}
 
+        #  for each result in payload, create a Sensor object and append to list, group by module.
         for result in json_data['results']:
             sensor = Sensor(result['value'])
             if sensor.get_type() == "Sensor":
@@ -37,11 +34,11 @@ def refresh_sensor_data():
                     sensors[module] = []
                 sensors[module].append(sensor.to_dict())
 
-        # payloads = [result['value']['pld'] for result in json_data['results']]
-        return jsonify({'response': [ [k,v] for k, v in sensors.items() ]})
+        return jsonify({'response': [[k, v] for k, v in sensors.items()]})
 
     else:
         return jsonify({'response': "Bad Request"}), 400
+
 
 @app.route('/meta_modal', methods=['POST'])
 def meta_modal():
@@ -54,13 +51,9 @@ def meta_modal():
 
 
 def fetch_sensor_results():
-    # datetime.isoformat
     before_time = '2016-10-20T15:51:26.213'
-    # before_time = (datetime.datetime.now() - datetime.timedelta(seconds=30)).isoformat()
-
     after_time = '2016-10-15T15:50:26.213'
-    # after_time = datetime.datetime.now().isoformat()
-    max_results = '50'
+    max_results = '500'
     ll_user_name = 'developer.test@link-labs.com'
     ll_password = 'devTest123'
 
@@ -72,7 +65,7 @@ def fetch_sensor_results():
         return json.loads(response.text)
 
     except Exception as e:
-        return {'error' : str(e)}
+        return {'error': str(e)}
 
 
 class Sensor(object):
@@ -82,9 +75,8 @@ class Sensor(object):
     value = {}
 
     num_of_bits = 80
-    scale = 16  ## equals to hexadecimal
+    scale = 16  # equals to hexadecimal
 
-    # The class "constructor" - It's actually an initializer
     def __init__(self, value):
 
         self.value = value
@@ -117,15 +109,37 @@ class Sensor(object):
         return self.bin2dec(bin_string) / float(2)
 
     def calc_temp(self, bin_string):
-        return self.bin2dec(bin_string, True) / float(100)
+        return self.bin2dec(bin_string[0:7], True) + self.bin2float_point(bin_string[7:])  # Q7.1 format
 
     def calc_pressure(self, bin_string):
-        return self.bin2dec(bin_string) * float(0.00390625)
+        return self.bin2dec(bin_string[0:24]) + self.bin2float_point(bin_string[24:])  # Q24.8 format
 
     @staticmethod
     def bin2dec(bin_string, signed=False):
+        '''
+        Accepts a binary string and converts it to a decimal int.
+        :param bin_string: String - example '01001110'
+        :param signed: boolean - True for singed
+        :return: int
+        '''
         dec = BitArray(bin=bin_string)
         return dec.int if signed else dec.uint
+
+    @staticmethod
+    def bin2float_point(bin_string):
+        '''
+        Accepts a binary string and converts it to a float point
+        :param bin_string: String - example '01001110'
+        :return: float
+        '''
+        place = 1
+        float_point = 0
+        for x in range(0, len(bin_string)):
+            place = place / float(2)
+            float_point += (int(bin_string[x]) * place)
+
+        return float_point
+
 
     def get_type(self):
         return self.sensor_data['message_type']
