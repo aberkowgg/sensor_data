@@ -16,26 +16,26 @@ Prerequisites:
 Python must be installed 2.7 or greater. 
 
 Step 1) Navigate to the directory you wish to clone this app and run:<br />
-	git init<br />
-	git clone https://github.com/aberkowgg/sensor_data.git
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git init<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;git clone https://github.com/aberkowgg/sensor_data.git
 
 Step 2) Install pythons virtual env. Cd to fsensor_data/myproject and run:<br />
-	sudo pip install virtualenv
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sudo pip install virtualenv
 
 Step 3) Init pythons virtual env by running:<br />
-	virtualenv venv
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;virtualenv venv
 
 Step 4) Active virtual env:<br />
-	Mac OSX/ Linux:<br />
-		. venv/bin/activate<br />
-	Windows:<br />
-		venv\scripts\activate
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mac OSX/ Linux:<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. venv/bin/activate<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Windows:<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;venv\scripts\activate
 
 Step 5) Install python requirements. Make sure you are in myproject/myproject and run: <br />
-	pip install -r requirements.txt
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pip install -r requirements.txt
 
 step 6) Run application: <br />
-	python myproject.py
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;python myproject.py
 
 step 7: Go to http://0.0.0.0:5000/ on your browser and enjoy!
 
