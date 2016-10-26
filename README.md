@@ -15,26 +15,26 @@ https://clientedge-conductor.link-labs.com/clientEdge/data/uplinkPayload/applica
 Prerequisites: 
 Python must be installed 2.7 or greater. 
 
-Step 1) Navigate to the directory you wish to clone this app and run:
-	git init
+Step 1) Navigate to the directory you wish to clone this app and run:<br />
+	git init<br />
 	git clone https://github.com/aberkowgg/sensor_data.git
 
-Step 2) Install pythons virtual env. Cd to fsensor_data/myproject and run:
+Step 2) Install pythons virtual env. Cd to fsensor_data/myproject and run:<br />
 	sudo pip install virtualenv
 
-Step 3) Init pythons virtual env by running:
+Step 3) Init pythons virtual env by running:<br />
 	virtualenv venv
 
-Step 4) Active virtual env:
-	Mac OSX/ Linux:
-		. venv/bin/activate
-	Windows:
+Step 4) Active virtual env:<br />
+	Mac OSX/ Linux:<br />
+		. venv/bin/activate<br />
+	Windows:<br />
 		venv\scripts\activate
 
-Step 5) Install python requirements. Make sure you are in myproject/myproject and run: 
+Step 5) Install python requirements. Make sure you are in myproject/myproject and run: <br />
 	pip install -r requirements.txt
 
-step 6) Run application: 
+step 6) Run application: <br />
 	python myproject.py
 
 step 7: Go to http://0.0.0.0:5000/ on your browser and enjoy!
