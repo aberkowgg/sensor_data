@@ -51,17 +51,15 @@ def meta_modal():
 
 
 def fetch_sensor_results():
-    before_time = '2016-10-20T15:51:26.213'
-    # before_time = (datetime.datetime.now() - datetime.timedelta(minutes=30)).isoformat()
-    after_time = '2016-10-15T15:50:26.213'
-    # after_time = datetime.datetime.now().isoformat()
+    before_time = (datetime.datetime.now() - datetime.timedelta(minutes=30)).isoformat()[:-3]
+    after_time = datetime.datetime.now().isoformat()[:-3]
     max_results = '500'
     ll_user_name = 'developer.test@link-labs.com'
     ll_password = 'devTest123'
 
     try:
         response = requests.get(
-            'https://clientedge-conductor.link-labs.com/clientEdge/data/uplinkPayload/applicationToken/b2f41103d2ba369afb75/events/%s/%s?maxResults=%s' % (before_time, after_time, max_results),
+            'https://clientedge-conductor.link-labs.com/clientEdge/data/uplinkPayload/applicationToken/b2f41103d2ba369afb75/events/%s/%s?maxResults=%s' % (after_time, before_time, max_results),
             auth=(ll_user_name, ll_password))
 
         return json.loads(response.text)
