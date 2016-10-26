@@ -1,13 +1,5 @@
 ## Synopsis
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
-
-## Code Example
-
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
-
-## Motivation
-
 Exercise:  Create a Web App that will display sensor data for the previous 30 minutes.  The sensor data includes data for 5 different sensors.Included is the message spec of the payloads returned from the Rest API so you can parse the message properly.  We are looking for Uplink Message 2, Sensor data.  
 
 Data is available via REST GET.  The api to fetch data
