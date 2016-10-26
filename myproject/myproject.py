@@ -52,7 +52,9 @@ def meta_modal():
 
 def fetch_sensor_results():
     before_time = '2016-10-20T15:51:26.213'
+    # before_time = (datetime.datetime.now() - datetime.timedelta(minutes=30)).isoformat()
     after_time = '2016-10-15T15:50:26.213'
+    # after_time = datetime.datetime.now().isoformat()
     max_results = '500'
     ll_user_name = 'developer.test@link-labs.com'
     ll_password = 'devTest123'
