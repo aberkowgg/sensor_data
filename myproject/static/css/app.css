@@ -1,0 +1,125 @@
+  .capitalize{
+    text-transform: capitalize;
+  }
+
+  .loading,
+  .error{
+    text-align: center;
+  }
+
+  .panel {
+    border-radius: 1px;
+  }
+
+  .card > .panel .panel-heading{
+    background-color: #03A9F4!important;
+  }
+
+
+  .action_bar{
+    background-color: #0288D1;
+  }
+
+  .action_bar{
+    margin-bottom: 35px;
+    padding-bottom: 40px;
+  }
+
+  .action_bar > .title{
+    font-size: 24px;
+  }
+
+  .panel-title{
+    color: rgb(255, 255, 255);
+  }
+
+  .row_key{
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .row_val{
+    text-align: center;
+  }
+
+  .main_card{
+    border: none;
+    box-shadow: 0 1px 1px rgba(0,0,0,0);
+  }
+
+  .main_card > .panel-body{
+    box-shadow: 0 1px 1px rgba(0,0,0,0);
+  }
+
+  .module{
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #03A9F4;
+  }
+
+  .meta_heading{
+      /*background-color: #2e6da4;*/
+  }
+
+  .loading,
+  .error{
+      margin-top: 40px;
+  }
+
+  .fa-spinner,
+  .fa-meh-o,
+  .error > span,
+  .loading > span{
+      color: #9E9E9E;
+  }
+
+  .error > span,
+  .loading > span{
+      margin-top: 5px;
+  }
+
+  .panel-heading {
+      border-radius: 1px;
+  }
+
+  .table>thead>tr>th {
+        border-bottom: 1px solid black;
+  }
+
+  tbody > tr:hover{
+    background-color: #F5F5F5;
+  }
+
+  .btn{
+    border-radius: 1px;
+  }
+
+  .btn-primary {
+    background-color: #4FC3F7;
+    border-color: #4FC3F7;
+  }
+
+  .modal-footer {
+    border: none;
+  }
+
+  .modal-header{
+    background-color: #03A9F4;
+    color: white;
+  }
+
+  .close {
+    color: white;
+    filter: alpha(opacity=20);
+    opacity: 1;
+  }
+
+  .module_panel{
+    height: 400px;
+    overflow: auto;
+  }
+
+  .refresh_btn{
+    position: relative;
+    bottom: 2px;
+  }
