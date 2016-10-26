@@ -106,10 +106,10 @@ class Sensor(object):
         return self.bin2dec(bin_string) * 2
 
     def calc_humidity(self, bin_string):
-        return self.bin2dec(bin_string) / float(2)
+        return self.bin2dec(bin_string[0:7], True) + self.bin2float_point(bin_string[7:])  # Q7.1 format
 
     def calc_temp(self, bin_string):
-        return self.bin2dec(bin_string[0:7], True) + self.bin2float_point(bin_string[7:])  # Q7.1 format
+        return self.bin2dec(bin_string, True) / float (100)
 
     def calc_pressure(self, bin_string):
         return self.bin2dec(bin_string[0:24]) + self.bin2float_point(bin_string[24:])  # Q24.8 format
