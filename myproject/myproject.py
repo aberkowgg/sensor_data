@@ -57,6 +57,11 @@ def fetch_sensor_results():
     ll_user_name = 'developer.test@link-labs.com'
     ll_password = 'devTest123'
 
+    # sometimes not results load in the the last 30 min. Un comment to see data
+    # before_time = '2016-10-15T15:50:26.213'
+    # after_time = '2016-10-20T15:51:26.213'
+
+
     try:
         response = requests.get(
             'https://clientedge-conductor.link-labs.com/clientEdge/data/uplinkPayload/applicationToken/b2f41103d2ba369afb75/events/%s/%s?maxResults=%s' % (after_time, before_time, max_results),
@@ -109,7 +114,7 @@ class Sensor(object):
         return self.bin2dec(bin_string[0:7], True) + self.bin2float_point(bin_string[7:])  # Q7.1 format
 
     def calc_temp(self, bin_string):
-        return self.bin2dec(bin_string, True) / float (100)
+        return self.bin2dec(bin_string, True) / float(100)
 
     def calc_pressure(self, bin_string):
         return self.bin2dec(bin_string[0:24]) + self.bin2float_point(bin_string[24:])  # Q24.8 format
@@ -139,8 +144,7 @@ class Sensor(object):
             float_point += (int(bin_string[x]) * place)
 
         return float_point
-
-
+    
     def get_type(self):
         return self.sensor_data['message_type']
 
