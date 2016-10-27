@@ -57,7 +57,7 @@ def fetch_sensor_results():
     ll_user_name = 'developer.test@link-labs.com'
     ll_password = 'devTest123'
 
-    # sometimes not results load in the the last 30 min. Un comment to see data
+    # sometimes no results load in the the last 30 min. Uncomment to see data from sample rest call.
     # before_time = '2016-10-15T15:50:26.213'
     # after_time = '2016-10-20T15:51:26.213'
 
