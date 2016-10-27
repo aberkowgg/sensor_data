@@ -29,6 +29,12 @@
         <span>something went wrong...</span>
       </div>
 
+      <!-- error message -->
+      <div class="error" ng-if="!app.loading_sensor_error && !app.loading_sensor_data && app.sensor_data.length == 0">
+        <div class="col-sm-12"><i class="fa fa-meh-o fa-5x" aria-hidden="true"></i></div>
+        <span>no results were returned...</span>
+      </div>
+
       <div ng-if="!app.loading_sensor_data && !app.loading_sensor_error">
         <div class="card col-xs-12"
               ng-repeat="sensors in app.sensor_data">
